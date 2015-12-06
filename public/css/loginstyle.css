@@ -70,13 +70,17 @@ img {
     margin: 0 auto;
 }
 
-.error {
+.errorVisible {
     color: red;
     visibility: visible;
     font-size: 0.7em;
     margin: 0 auto;
     text-align: center;
     padding: 2px;
+}
+
+.errorNoVisible {
+    visibility: hidden;
 }
 
 #nombreSistema {

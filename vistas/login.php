@@ -11,10 +11,10 @@
     </header>
     <section class="login">
   	<p id = "nombreSistema" >MiTienda v 1.0</p>
-	<p id = "error" class="error">[ERROR]</p>
+	<p id = "error" class="errorNoVisible">[ERROR]</p>
     </section>
     <section class="login">
-	    <form id="firmarse" method="GET" action="index.php">
+	    <form id="firmarse" method="get" action="index.php">
 			<input type="hidden" name='login'>
             <label>Usuario</label>
             <input name="login" placeholder="usuario" autofocus>
