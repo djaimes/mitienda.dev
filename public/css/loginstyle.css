@@ -1,10 +1,15 @@
 @font-face{
-    font-family: MiFont;
-    src: url(../fonts/weblysleekui.ttf);
+    font-family: MiOpenSans;
+    src: url(../fonts/open-sans/OpenSans-Regular.ttf);
+}
+
+@font-face{
+    font-family: MiRaleway;
+    src: url(../fonts/raleway/Raleway-Bold.ttf);
 }
 
 html{
-    font-family: Verdana;
+    font-family: MiOpenSans;
 	width: 800px;
 	height: 700px;
 	margin: 0 auto;
@@ -84,7 +89,7 @@ img {
 }
 
 #nombreSistema {
-    /* font-family: MiFont; */
+    font-family: MiRaleway; 
     font-size: 1.5em;
     padding: 5px;
     display: block;

@@ -15,18 +15,17 @@ function init(){
 }
 
 /***
-* Al tener 3 letras vamos a buscar a la base de datos
-* con Ajax
+*	Con 3 letras vamos a al AJAX
 */
 
 function buscarProducto(cadena) {
 	
-	/* Crear objeto ajax */
+	// Crear objeto ajax 
 	var ajax = new XMLHttpRequest();		
 	
-	/* Cuando responda esta función recibe los resultados */
+	// Cuando responda esta función recibe los resultados 
 	ajax.onreadystatechange = function(){	
-		if (ajax.readyState == 4 && ajax.status == 200) { /* 4=terminó; 200=OK; */
+		if (ajax.readyState == 4 && ajax.status == 200) { /*4=terminó;200=OK;*/
 			var txtProductos = ajax.responseText;
 			if ( txtProductos ) {					// Si encontramos algo
 				desplegarProductos(txtProductos);
@@ -34,19 +33,19 @@ function buscarProducto(cadena) {
 		}
 	}
 	
-	/* Creamos la consulta ajax */
-	ajax.open("GET", 					/* GET o POST */
-			  "../../app/buscarProducto.php?codigo=" + cadena,		/* URL */
-			  true);					/* true = asyn, false = sync */
-	
-	ajax.send();						/* Enviar la consulta */
+	// Creamos la consulta ajax
+	ajax.open("GET", 					// GET o POST
+			  "index.php?producto&cadena=" + cadena,		// URL
+			  true);					// true = asyn, false = sync
+	ajax.send();						// Enviar la consulta
 }
 
-/***
-* Desplegar los productos sugeridos
+/**
+*	Desplegar los productos sugeridos
 */
 function desplegarProductos(txtProductos){
-	jsonProductos = JSON.parse(txtProductos); /* sin var, porque será global */
+	// Sin el var para hacerla global
+	jsonProductos = JSON.parse(txtProductos); 
 	var i;
 	var html = '';
 	

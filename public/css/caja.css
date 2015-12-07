@@ -1,18 +1,18 @@
 @font-face {
-	    font-family: open-sans;
-	    src: url(http://mitienda.dev/public/fonts/OpenSans-Regular.ttf);
+	    font-family: MiOpenSans;
+	    src: url(../fonts/opensans/OpenSans-Regular.ttf);
 }
 
 @font-face {
-	    font-family: raleway;
-	    src: url(http://mitienda.dev/public/fonts/Raleway-Regular.ttf);
+	    font-family: MiRaleway;
+	    src: url(../fonts/raleway/Raleway-Regular.ttf);
 }
 	
 body {
     background: #f2f2f2;
     color: #000305;
     font-size: 87.5%; /* Base font size: 14px */
-    font-family: 'open-sans';
+    font-family: MiOpenSans;
     line-height: 1.429;
     margin: 0;
     padding: 0;
@@ -38,7 +38,7 @@ body {
 	*/
     
 	#banner h1 {
-		font-family: 'raleway';
+		font-family: MiRaleway;
 		font-size: 2em;
 		text-align: center;
 	}
@@ -58,8 +58,6 @@ body {
        padding: 0;
        text-align: center;
        width: 800px;
-	   -webkit-border-top-left-radius: 10px;
-	   -webkit-border-top-right-radius: 10px;
      }
   
      #banner nav ul {list-style: none; margin: 0 auto; width: 800px;}
@@ -211,8 +209,6 @@ table, th, td {
 	color: white;
 	margin: 15px auto;
 	padding: 3px;
-   -webkit-border-bottom-left-radius: 10px;
-   -webkit-border-bottom-right-radius: 10px;
 }
 
 p {

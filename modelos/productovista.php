@@ -4,7 +4,7 @@
 * Esta parte del modelo traerá la vista correspondiente
 */
 
-class Vista_Modelo {
+class productoVista_Modelo {
 
 	// Para almacenar parámetros recibidos
     private $data = array();
@@ -34,7 +34,7 @@ class Vista_Modelo {
 			ob_start();
 		}
 		
-        // Parsea las variables de data en variables locales, para que redericen la vista.
+        // Parsea las variables de data en variables locales
 		$data = $this->data;
 		
         // Obtener el template

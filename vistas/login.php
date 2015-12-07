@@ -11,7 +11,7 @@
     </header>
     <section class="login">
   	<p id = "nombreSistema" >MiTienda v 1.0</p>
-	<p id = "error" class="errorNoVisible">[ERROR]</p>
+	<p id = "error" class="<?=$data['clase'];?>"><?=$data['error'];?></p>
     </section>
     <section class="login">
 	    <form id="firmarse" method="get" action="index.php">
