@@ -41,11 +41,11 @@ class Producto_Modelo {
 	*/
 	public function getProductoByNombre($nombre) {
 		$nombre = $this->db->escape($nombre);
-		$this-db->prepare(
+		$this->db->prepare(
 			"
 			select descripcion, unidad, precio 
 			from producto 
-			where descripcion like '%' . $nombre . '%'
+			where descripcion like '%$nombre%'
 			"
 		);
 		$this->db->query();
