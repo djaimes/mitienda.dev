@@ -28,6 +28,7 @@ function buscarProducto(cadena) {
 		if (ajax.readyState == 4 && ajax.status == 200) { /*4=terminó;200=OK;*/
 			var txtProductos = ajax.responseText;
 			if ( txtProductos ) {					// Si encontramos algo
+				console.log(txtProductos);
 				desplegarProductos(txtProductos);
 			}
 		}

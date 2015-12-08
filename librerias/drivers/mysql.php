@@ -67,7 +67,11 @@ class Mysql_Driver extends Database_Library {
 		if ( isset($this->result) ){
 			switch ($type){
 				case 'array':
-					$row = $this->result->fetch_array();
+					// $row = $this->result->fetch_array();
+		 			$arreglo = array();
+         			while ($row = $this->result->fetch_array(MYSQL_ASSOC)) {
+						$arreglo[]=$row;
+         			}
 					break;
 				case 'object':
 					// por hacer
@@ -75,7 +79,8 @@ class Mysql_Driver extends Database_Library {
 					$row = $this->result->fetch_object();
 					break;
 			}
-			return $row;
+			//return $row;
+			return $arreglo;
 		}
 		return FALSE;
 	}
