@@ -41,7 +41,6 @@ if ( empty ( $request ) ) {
 } else {
 	$url = explode('&', $request);
 	$controlador = str_replace("=","",array_shift($url));
-	$parametros = array();
 
 	// Obtener todos los parámetros de la url
 	foreach ($url as $var) {

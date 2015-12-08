@@ -1,25 +1,32 @@
-/***
+/**
 *	Funciones para el módulo de ventas
 */
 
 function init(){
 	var codigo = document.getElementById('codigo');
+	var patronNumerico = new RegExp('[0-9]');
+
 	codigo.onkeyup = function sugiereProducto() {
 		if ( this.value.length >= 3 ) {
-			buscarProducto(this.value);
+			if ( !patronNumerico.test(this.value) ) {	
+				buscarProducto('cadena', this.value);
+			} else if ( this.value.length == 13 && patronNumerico.test(this.value)) {
+				// Buscar por código de barra
+				buscarProducto('codigobarra', this.value);
+			  }
 		} else {
 			document.getElementById('divProductosSugeridos');
-				divProductosSugeridos.innerHTML = ''
-		};
-	}
+				divProductosSugeridos.innerHTML = '';
+		}
+	};
 }
 
-/***
+/**
 *	Con 3 letras vamos a al AJAX
 */
 
-function buscarProducto(cadena) {
-	
+function buscarProducto(tipoBusqueda, cadena) {
+
 	// Crear objeto ajax 
 	var ajax = new XMLHttpRequest();		
 	
@@ -28,17 +35,21 @@ function buscarProducto(cadena) {
 		if (ajax.readyState == 4 && ajax.status == 200) { /*4=terminó;200=OK;*/
 			var txtProductos = ajax.responseText;
 			if ( txtProductos ) {					// Si encontramos algo
-				console.log(txtProductos);
+alert(txtProductos);
 				desplegarProductos(txtProductos);
 			}
 		}
 	}
 	
 	// Creamos la consulta ajax
-	ajax.open("GET", 					// GET o POST
-			  "index.php?producto&cadena=" + cadena,		// URL
-			  true);					// true = asyn, false = sync
-	ajax.send();						// Enviar la consulta
+	var tipo = "GET";
+	var url = "index.php?producto&" + tipoBusqueda + "=" + cadena;
+	var asincrono = true;
+
+	ajax.open(tipo, 		// GET o POST
+			  url,			// URL
+			  asincrono);	// true = asyn, false = sync
+	ajax.send();			// Enviar la consulta
 }
 
 /**

@@ -96,6 +96,7 @@ body {
 .productoSelected {
 	color: white;
 	background: #4285f4;
+	cursor: default;
 }
 
 .productoUnselected {
