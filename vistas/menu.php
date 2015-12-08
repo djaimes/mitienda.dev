@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <title>MiTienda</title>
-<link rel="stylesheet" type="text/css" href="../public/css/caja.css" />
-<script type="text/javascript" src="../public/js/caja.js"></script>
+<link rel="stylesheet" type="text/css" href="../public/css/menu.css" />
+<script type="text/javascript" src="../public/js/menu.js"></script>
 </head>
 <body id="index" class="home" onload="init()">
 <header id="banner" class="body">
@@ -13,7 +13,7 @@
 	<nav>
 		<ul>
 			<li>
-				<a href="#">Vender</a>
+				<a href="index.php?venta&">Vender</a>
 			</li>
 			<li>
 				<a href="#">Producto</a>
@@ -28,41 +28,6 @@
 	</nav>
 </header>
 <section id="contenido" class="body">
-<section id="articulo" class="body">
-<div id="divProducto">
-	<!--form id="formBuscarProducto" method="POST" action="../../app/buscarProducto.php">
-		<label>Producto</label-->
-		<input id="codigo" name="codigo" placeholder="código de barra o nombre" autofocus autocomplete=off>
-		<!--input id="submit" name="submit" type="submit" value="Ir">
-	</form-->
-	<div id="divProductosSugeridos">
-	</div>
-</div>
-<!-- div id="enviarNota">
-	<input type="button" value="imprimir">
-	<input type="button" value="correo">
-</div -->
-</section>
-<section id="nota">
-	<div id="headerNota">
-		<img src="../public/images/bags32px.png">
-		<p>TENDEJÓN DON REGINO</p>
-		<p>Callejón del cuajo No. 700</p>
-		<p>Ciudad de México. C.P 8888</p>
-	</div>
-	<div id="detalle">
-		<table id="tablaProductos">
-		</table>
-	</div>
-	<div id="cantidadConLetras">
-	</div>
-	<div id="footerNota">
-		<div id="ticketDeCompra">
-		</div>
-		<div id="qrcode">
-		</div>	
-	</div>
-</section>
 </section>
 <footer id="pieDeNota" class="body">
 	<p>Mi tienda versión 1.0</P>

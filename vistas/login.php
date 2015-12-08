@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="es">
 <head>
-	<link rel="stylesheet" type="text/css" href="../public/css/loginstyle.css">
+	<link rel="stylesheet" type="text/css" href="../public/css/login.css">
 	<meta charset="UTF-8">
 	<title>Mi Tienda</title>
 </head>
