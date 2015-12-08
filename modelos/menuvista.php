@@ -4,7 +4,7 @@
 *	MenuVista_Modelo 
 */
 
-class MenuVista_Modelo {
+class menuVista_Modelo {
 
     private $data = array();
     private $render = FALSE;
