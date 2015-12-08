@@ -22,7 +22,7 @@ body {
 .body{
 	clear: both;
 	margin: 0 auto;
-	width: 800px;
+	width: 100%;
 }
   /*
     Encabezado
@@ -39,7 +39,7 @@ body {
     
 	#banner h1 {
 		font-family: MiRaleway;
-		font-size: 2em;
+		font-size: 1.2em;
 		text-align: center;
 	}
 	
@@ -54,13 +54,13 @@ body {
        font-size: 1.143em;
        height: 40px;
        line-height: 30px;
-       margin: 0 auto 1em auto;
+       margin: 0 auto;
        padding: 0;
        text-align: center;
-       width: 800px;
+       width: 100%;
      }
   
-     #banner nav ul {list-style: none; margin: 0 auto; width: 800px;}
+     #banner nav ul {list-style: none; margin: 0 auto; width: 100%;}
      #banner nav li {float: left; display: inline; margin: 0;}
   
      #banner nav a:link, #banner nav a:visited {
@@ -80,12 +80,3 @@ p {
 	padding: 0;
 	margin: 0;
 }
-
-#pieDeNota {
-	text-align: center;
-	background: black;
-	color: white;
-	margin: 15px auto;
-	padding: 3px;
-}
-

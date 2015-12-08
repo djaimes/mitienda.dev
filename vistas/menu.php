@@ -13,7 +13,7 @@
 	<nav>
 		<ul>
 			<li>
-				<a href="index.php?venta&">Vender</a>
+				<a href="index.php?venta">Vender</a>
 			</li>
 			<li>
 				<a href="#">Producto</a>
@@ -26,11 +26,9 @@
 			</li>
 		</ul>
 	</nav>
+    <p><?=$data['nombre'];?></p>
 </header>
 <section id="contenido" class="body">
 </section>
-<footer id="pieDeNota" class="body">
-	<p>Mi tienda versión 1.0</P>
-</footer>
 </body>
 </html>

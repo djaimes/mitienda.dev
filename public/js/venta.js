@@ -35,7 +35,6 @@ function buscarProducto(tipoBusqueda, cadena) {
 		if (ajax.readyState == 4 && ajax.status == 200) { /*4=terminó;200=OK;*/
 			var txtProductos = ajax.responseText;
 			if ( txtProductos ) {					// Si encontramos algo
-alert(txtProductos);
 				desplegarProductos(txtProductos);
 			}
 		}

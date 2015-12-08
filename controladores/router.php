@@ -31,12 +31,14 @@ function __autoload($className) {
 	        die("El archivo '$filename' con la clase '$className' no existe.");    
 	    }
 }
+// Checar si hay una sesión en curso.
+session_start();
 
 // request es lo que viene en la URL a partir del signo ? 
 $request = $_SERVER['QUERY_STRING'];
 $parametros = array();
 
-if ( empty ( $request ) ) {
+if ( empty($request) ) {
 	$controlador = 'login';
 } else {
 	$url = explode('&', $request);

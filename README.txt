@@ -5,4 +5,7 @@
 			todo el arreglo.
 08-12-2015	Está funcionando la búsqueda de productos por las primeras
 			tres letras y por el código de barras.
+			Está funcionando hasta la venta.
+			Ya tengo separado en capas menú y venta en MVC
+			No he podido hacer que funcione la session
 

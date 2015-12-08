@@ -1,5 +1,4 @@
 <?php
-
 /**
 *	login.php
 */
@@ -27,7 +26,6 @@ class Login_Controlador {
 				$loginModelo = new Login_Modelo;
 				$login = $loginModelo->getUsuario($usuario, $contrasena);
 				if ( count($login) ){ 
-					session_start();
 					$_SESSION['login'] = $login['login'];
 					$_SESSION['nombre'] = $login['nombre'] . ' ' . $login['paterno'];
 					// Llamar al controlador menú

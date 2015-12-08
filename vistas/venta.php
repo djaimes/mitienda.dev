@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <title>MiTienda</title>
-<link rel="stylesheet" type="text/css" href="../public/css/caja.css" />
-<script type="text/javascript" src="../public/js/caja.js"></script>
+<link rel="stylesheet" type="text/css" href="../public/css/venta.css" />
+<script type="text/javascript" src="../public/js/venta.js"></script>
 </head>
 <body id="index" class="home" onload="init()">
 <header id="banner" class="body">
