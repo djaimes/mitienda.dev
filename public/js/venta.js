@@ -1,5 +1,5 @@
 /**
-*	Funciones para el módulo de ventas
+*	ventas.js
 */
 
 function init(){
@@ -10,7 +10,8 @@ function init(){
 		if ( this.value.length >= 3 ) {
 			if ( !patronNumerico.test(this.value) ) {	
 				buscarProducto('cadena', this.value);
-			} else if ( this.value.length == 13 && patronNumerico.test(this.value)) {
+			} else if ( this.value.length == 13 && 
+						patronNumerico.test(this.value)) {
 				// Buscar por código de barra
 				buscarProducto('codigobarra', this.value);
 			  }
@@ -34,7 +35,7 @@ function buscarProducto(tipoBusqueda, cadena) {
 	ajax.onreadystatechange = function(){	
 		if (ajax.readyState == 4 && ajax.status == 200) { /*4=terminó;200=OK;*/
 			var txtProductos = ajax.responseText;
-			if ( txtProductos ) {					// Si encontramos algo
+			if ( txtProductos ) {			// Si encontramos algo
 				desplegarProductos(txtProductos);
 			}
 		}
@@ -42,7 +43,7 @@ function buscarProducto(tipoBusqueda, cadena) {
 	
 	// Creamos la consulta ajax
 	var tipo = "GET";
-	var url = "index.php?producto&" + tipoBusqueda + "=" + cadena;
+	var url = "index.php?producto&metodo=buscar&" + tipoBusqueda + "=" + cadena;
 	var asincrono = true;
 
 	ajax.open(tipo, 		// GET o POST
@@ -78,24 +79,27 @@ function desplegarProductos(txtProductos){
 	}
 }
 
-/***
+/**
 * Iluminar en azul el producto sobre el cursor
 */
 function productoSelected() {
 	this.setAttribute('class','productoSelected');
 }
 
-/***
+/**
 * Quitarle el azul
 */
 function productoUnSelected() {
 	this.setAttribute('class','productoUnSelected');
 }
 
-/***
+/**
 * Pasar la selección a la caja de texto
 */
 function productoSeleccionado() {
+	// grabar en backend
+	grabarProducto(jsonProductos[this.id].codigobarra);
+	
 	var codigo = document.getElementById('codigo');
 	var divProductosSugeridos = document.getElementById('divProductosSugeridos');
 	divProductosSugeridos.innerHTML = '';
@@ -117,8 +121,32 @@ function productoSeleccionado() {
 	
 	var tabla = document.getElementById('tablaProductos');
 	tabla.appendChild(tr);
+
+	codigo.value = '';	// limpiamos búsqueda
+	codigo.focus();		// otra búsqueda
 	
-	codigo.value = '';	/* limpiamos búsqueda */
-	codigo.focus();		/* otra búsqueda */
+}
+
+/**
+*	Grabar el producto en la nota
+*/
+function grabarProducto(codigobarra) {
+
+	var ajax = new XMLHttpRequest();		
+
+	ajax.onreadystatechange = function() {	
+		if (ajax.readyState == 4 && ajax.status == 200) { /*4=terminó;200=OK;*/
+			if ( ajax.responseText ) {			// Si encontramos algo
+				alert('Si se grabó');
+			} else {
+				alert('no pudo grabarse el registro');
+			}
+		}
+	}
 	
+	var tipo = "GET";
+	var url = "index.php?producto&metodo=grabar&codigobarra=" + codigobarra;
+	var asincrono = true;
+
+	ajax.open(tipo, url, asincrono);
 }

@@ -10,16 +10,29 @@ class Producto_Controlador {
     public $jsonTemplate = 'jsonproducto';
     
     public function main(array $parametros) {
-       	$productoModelo = new Producto_Modelo;
-		if ( isset($parametros['cadena'] ) ) {
-			$producto = $productoModelo->getProductoByNombre($parametros['cadena']);	
-		} else {
-        	$producto = $productoModelo->getProductoByCodigo($parametros['codigobarra']);
+		if ( isset($parametros['metodo']) ) {
+       		$productoModelo = new Producto_Modelo;
+			$metodo = $parametros['metodo'];
+			switch ($metodo) {
+				case 'grabar':
+					// grabar un producto
+					break;
+				case 'borrar':
+					// borrar un producto
+					break;
+				case 'buscar':
+					if ( isset($parametros['cadena'] ) ) {
+						$producto = $productoModelo->getProductoByNombre(
+										$parametros['cadena']);	
+					} else {
+        				$producto = $productoModelo->getProductoByCodigo(
+										$parametros['codigobarra']);
+					}
+					$view = new productoVista_Modelo($this->jsonTemplate);
+					$view->assign('productos', $producto);
+					break;
+			}
 		}
-		$view = new productoVista_Modelo($this->jsonTemplate);
-		$view->assign('productos', $producto);
-
-		// Renderizar
 		$view->render();
     }
 }
