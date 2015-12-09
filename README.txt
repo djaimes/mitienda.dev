@@ -8,4 +8,8 @@
 			Está funcionando hasta la venta.
 			Ya tengo separado en capas menú y venta en MVC
 			No he podido hacer que funcione la session
+09-12-2015	Implementé por separado los modelos de nota, detalle y folios
+			Los tres funcionan bien.
+			Creo un directorio data para colocar una copia de la bd
+			por las tablas que voy creando o modificando.
 
