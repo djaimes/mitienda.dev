@@ -51,6 +51,7 @@ class Mysql_Driver extends Database_Library {
 		} else {
 			return FALSE;
 		}
+		return $this->result;
 	}
 	
 	/**

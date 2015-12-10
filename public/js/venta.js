@@ -20,6 +20,8 @@ function init(){
 				divProductosSugeridos.innerHTML = '';
 		}
 	};
+	
+	agregarNota();
 }
 
 /**
@@ -98,7 +100,7 @@ function productoUnSelected() {
 */
 function productoSeleccionado() {
 	// grabar en backend
-	grabarProducto(jsonProductos[this.id].codigobarra,
+	agregarDetalle(jsonProductos[this.id].codigobarra,
 				   jsonProductos[this.id].precio);
 	
 	var codigo = document.getElementById('codigo');
@@ -131,16 +133,14 @@ function productoSeleccionado() {
 /**
 *	Grabar el producto en la nota
 */
-function grabarProducto(codigobarra, precio) {
+function agregarDetalle(codigobarra, precio) {
 
 	var ajax = new XMLHttpRequest();		
 
 	ajax.onreadystatechange = function() {	
 		if (ajax.readyState == 4 && ajax.status == 200) { /*4=terminó;200=OK;*/
-			if ( ajax.responseText ) {			// Si encontramos algo
-				alert('Si se grabó');
-			} else {
-				alert('no pudo grabarse el registro');
+			if ( ajax.responseText != 1 ) {			// Algún error?
+				return 'error';
 			}
 		}
 	}

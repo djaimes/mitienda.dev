@@ -8,6 +8,7 @@ class Detalle_Controlador {
 
     public $jsonTemplate = 'jsondetalle';
     public $htmlTemplate = 'htmldetalle';
+	public $txtTemplate = 'txtdetalle';
     
     public function main(array $parametros) {
 		if ( isset($parametros['metodo']) ) {
@@ -24,9 +25,10 @@ class Detalle_Controlador {
 										$parametros['codigobarra'],
 										$parametros['precio']
 									);
+						$resultado = ($resultado) ? 1 : 0;
 					} 
 
-					$view = new detalleVista_Modelo($this->htmlTemplate);
+					$view = new detalleVista_Modelo($this->txtTemplate);
 					$view->assign('resultado', $resultado);
 					break;
 				default:
