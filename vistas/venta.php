@@ -30,18 +30,13 @@
 <section id="contenido" class="body">
 <section id="articulo" class="body">
 <div id="divProducto">
-	<!--form id="formBuscarProducto" method="POST" action="../../app/buscarProducto.php">
-		<label>Producto</label-->
-		<input id="codigo" name="codigo" placeholder="código de barra o nombre" autofocus autocomplete=off>
-		<!--input id="submit" name="submit" type="submit" value="Ir">
-	</form-->
+	<input id="codigo" name="codigo" placeholder="código de barra o nombre" autofocus autocomplete=off>
 	<div id="divProductosSugeridos">
 	</div>
 </div>
-<!-- div id="enviarNota">
-	<input type="button" value="imprimir">
-	<input type="button" value="correo">
-</div -->
+<div id="cerrarNota">
+	<input id="cerrarnota" type="button" value="Cerrar la nota">
+</div>
 </section>
 <section id="nota">
 	<div id="headerNota">

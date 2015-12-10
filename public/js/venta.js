@@ -2,10 +2,14 @@
 *	ventas.js
 */
 
-var folioNota;
+var folioNota = 0;
+var subtotal = 0;
+var iva = 0;
+var total = 0;
 
 function init(){
 	var codigo = document.getElementById('codigo');
+	var cerrarnota = document.getElementById('cerrarnota');
 	var patronNumerico = new RegExp('[0-9]');
 
 	codigo.onkeyup = function sugiereProducto() {
@@ -22,9 +26,30 @@ function init(){
 				divProductosSugeridos.innerHTML = '';
 		}
 	};
+
+	cerrarnota.onclick = function cerrarNota(){
+		// Calcular subtotal, iva y total
+
+		var tr = document.createElement('tr');
+		tr.id = 'subtotal';
 	
-	// folio de la nota
+		var tdDescripcion = document.createElement('td');
+		tdDescripcion.innerHTML = 'Subtotal';
+		tdDescripcion.setAttribute('class','alinearDerecha');
+	
+		var tdSubtotal = document.createElement('td');
+		tdSubtotal.innerHTML = subtotal.toFixed(2);
+		tdSubtotal.setAttribute('class', 'alinearDerecha');
+	
+		tr.appendChild(tdDescripcion);
+		tr.appendChild(tdSubtotal);
+	
+		var tabla = document.getElementById('tablaProductos');
+		tabla.appendChild(tr);
+	};
+	
 	getFolio();
+	agregarNota();
 }
 
 /**
@@ -106,6 +131,8 @@ function productoSeleccionado() {
 	agregarDetalle(jsonProductos[this.id].codigobarra,
 				   jsonProductos[this.id].precio);
 	
+	subtotal += parseFloat(jsonProductos[this.id].precio);
+
 	var codigo = document.getElementById('codigo');
 	var divProductosSugeridos = document.getElementById('divProductosSugeridos');
 	divProductosSugeridos.innerHTML = '';
@@ -151,7 +178,7 @@ function agregarDetalle(codigobarra, precio) {
 	var tipo = "GET";
 	var url = "index.php?detalle&metodo=agregardetalle&folio=" + folioNota + "&codigobarra=" + codigobarra +"&precio=" + precio;
 
-	var asincrono = true;
+	var asincrono = false;
 
 	ajax.open(tipo, url, asincrono);
 	ajax.send();
@@ -165,18 +192,40 @@ function getFolio() {
 	var ajax = new XMLHttpRequest();		
 
 	ajax.onreadystatechange = function() {	
-		if (ajax.readyState == 4 && ajax.status == 200) { /*4=terminó;200=OK;*/
-			jsonFolio = JSON.parse(ajax.responseText); 
-			folioNota = jsonFolio[0].folio;
+		if (ajax.readyState == 4 && ajax.status == 200) { 
+			var jsonFolio = JSON.parse(ajax.responseText); 
+			var folio = jsonFolio[0].folio;
 			var tagfolio = document.getElementById("folio");
-			var txtFolio = document.createTextNode("Folio: " + folioNota);
+			var txtFolio = document.createTextNode("Folio: " + folio);
 			tagfolio.appendChild(txtFolio);
+			folioNota = folio;
 		}
 	}
 	
 	var tipo = "GET";
 	var url = "index.php?folios&metodo=getfolio&documento=1";
-	var asincrono = true;
+	var asincrono = false;
+
+	ajax.open(tipo, url, asincrono);
+	ajax.send();
+}
+
+/**
+*	Crear la nota
+*/
+function agregarNota() {
+
+	var ajax = new XMLHttpRequest();		
+
+	ajax.onreadystatechange = function() {	
+		if (ajax.readyState == 4 && ajax.status == 200) { 
+			// nada por hacer
+		}
+	}
+	
+	var tipo = "GET";
+	var url = "index.php?nota&metodo=agregarnota&folio=" + folioNota;
+	var asincrono = true; // hay que esperar la respuesta
 
 	ajax.open(tipo, url, asincrono);
 	ajax.send();
