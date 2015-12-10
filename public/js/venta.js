@@ -28,24 +28,66 @@ function init(){
 	};
 
 	cerrarnota.onclick = function cerrarNota(){
-		// Calcular subtotal, iva y total
 
+		// Subtotal
 		var tr = document.createElement('tr');
 		tr.id = 'subtotal';
 	
-		var tdDescripcion = document.createElement('td');
-		tdDescripcion.innerHTML = 'Subtotal';
-		tdDescripcion.setAttribute('class','alinearDerecha');
+		var tdTexto = document.createElement('td');
+		tdTexto.innerHTML = 'Subtotal';
+		tdTexto.setAttribute('class','alinearDerecha');
 	
-		var tdSubtotal = document.createElement('td');
-		tdSubtotal.innerHTML = subtotal.toFixed(2);
-		tdSubtotal.setAttribute('class', 'alinearDerecha');
+		var tdCantidad = document.createElement('td');
+		tdCantidad.innerHTML = subtotal.toFixed(2);
+		tdCantidad.setAttribute('class', 'alinearDerecha');
 	
-		tr.appendChild(tdDescripcion);
-		tr.appendChild(tdSubtotal);
+		tr.appendChild(tdTexto);
+		tr.appendChild(tdCantidad);
 	
 		var tabla = document.getElementById('tablaProductos');
 		tabla.appendChild(tr);
+
+		// Iva
+		var tr = document.createElement('tr');
+		tr.id = 'iva';
+	
+		var tdTexto = document.createElement('td');
+		tdTexto.innerHTML = 'Iva';
+		tdTexto.setAttribute('class','alinearDerecha');
+	
+		var tdCantidad = document.createElement('td');
+		tdCantidad.innerHTML = (subtotal * 0.16).toFixed(2);
+		tdCantidad.setAttribute('class', 'alinearDerecha');
+	
+		tr.appendChild(tdTexto);
+		tr.appendChild(tdCantidad);
+	
+		var tabla = document.getElementById('tablaProductos');
+		tabla.appendChild(tr);
+
+		// Total
+		var tr = document.createElement('tr');
+		tr.id = 'total';
+	
+		var tdTexto = document.createElement('td');
+		tdTexto.innerHTML = 'Total';
+		tdTexto.setAttribute('class','alinearDerecha');
+	
+		var tdCantidad = document.createElement('td');
+		tdCantidad.innerHTML = (subtotal * 1.16).toFixed(2);
+		tdCantidad.setAttribute('class', 'alinearDerecha');
+	
+		tr.appendChild(tdTexto);
+		tr.appendChild(tdCantidad);
+	
+		var tabla = document.getElementById('tablaProductos');
+		tabla.appendChild(tr);
+
+		//backend
+		actualizarNota();
+
+		var cerrarNota = document.getElementById('cerrarnota');
+		cerrarNota.setAttribute('disabled','disabled');
 	};
 	
 	getFolio();
@@ -227,6 +269,26 @@ function agregarNota() {
 	var url = "index.php?nota&metodo=agregarnota&folio=" + folioNota;
 	var asincrono = true; // hay que esperar la respuesta
 
+	ajax.open(tipo, url, asincrono);
+	ajax.send();
+}
+
+/**
+*	Actualizar la nota
+*/
+function actualizarNota() {
+
+	var ajax = new XMLHttpRequest();		
+
+	ajax.onreadystatechange = function() {	
+		if (ajax.readyState == 4 && ajax.status == 200) { 
+			// Alguna validación
+		}
+	}
+	
+	var tipo = "GET";
+	var url = "index.php?nota&metodo=actualizarnota&folio=" + folioNota + "&subtotal=" + subtotal;
+	var asincrono = true; // hay que esperar la respuesta
 	ajax.open(tipo, url, asincrono);
 	ajax.send();
 }

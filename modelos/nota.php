@@ -30,5 +30,25 @@ class Nota_Modelo {
 
         return $resultado;
     }
+
+
+    /**
+	*	Actualizar
+	*/
+    public function actualizarNota($folio, $subtotal) {
+		
+		$folio = $this->db->escape($folio);
+		$subtotal = $this->db->escape($subtotal);
+
+        $this->db->prepare(
+            "
+            UPDATE nota set importe = $subtotal where folio = $folio;
+            "
+        );
+        
+        $resultado = $this->db->query();
+
+        return $resultado;
+    }
 }
 ?>

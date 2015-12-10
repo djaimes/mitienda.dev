@@ -15,19 +15,23 @@ class Nota_Controlador {
 			$metodo = $parametros['metodo'];
 			switch ($metodo) {
 				case 'agregarnota':
-					if ( isset($parametros['folio'] )) {
-						$resultado = $notaModelo->agregarNota(
-										$parametros['folio']);
-					} 
-
-					$view = new notaVista_Modelo($this->htmlTemplate);
-					$view->assign('resultado', $resultado);
+					$resultado = $notaModelo->agregarNota(
+											$parametros['folio']
+								);
 					break;
+				case 'actualizarnota':
+					$resultado = $notaModelo->actualizarNota(
+								 	$parametros['folio'],
+									$parametros['subtotal']
+								 );
+					break;	
 				default:
 					// por hacer
 					break;
 			}
 		}
+		$view = new notaVista_Modelo($this->jsonTemplate);
+		$view->assign('resultado', $resultado);
 		$view->render();
     }
 }
