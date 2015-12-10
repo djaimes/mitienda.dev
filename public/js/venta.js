@@ -2,6 +2,8 @@
 *	ventas.js
 */
 
+var folioNota;
+
 function init(){
 	var codigo = document.getElementById('codigo');
 	var patronNumerico = new RegExp('[0-9]');
@@ -21,7 +23,8 @@ function init(){
 		}
 	};
 	
-	agregarNota();
+	// folio de la nota
+	getFolio();
 }
 
 /**
@@ -146,8 +149,33 @@ function agregarDetalle(codigobarra, precio) {
 	}
 	
 	var tipo = "GET";
-	var url = "index.php?detalle&metodo=agregardetalle&folio=" + "100" + "&codigobarra=" + codigobarra +"&precio=" + precio;
+	var url = "index.php?detalle&metodo=agregardetalle&folio=" + folioNota + "&codigobarra=" + codigobarra +"&precio=" + precio;
 
+	var asincrono = true;
+
+	ajax.open(tipo, url, asincrono);
+	ajax.send();
+}
+
+/**
+*	Obtener el folio de la nota
+*/
+function getFolio() {
+
+	var ajax = new XMLHttpRequest();		
+
+	ajax.onreadystatechange = function() {	
+		if (ajax.readyState == 4 && ajax.status == 200) { /*4=terminó;200=OK;*/
+			jsonFolio = JSON.parse(ajax.responseText); 
+			folioNota = jsonFolio[0].folio;
+			var tagfolio = document.getElementById("folio");
+			var txtFolio = document.createTextNode("Folio: " + folioNota);
+			tagfolio.appendChild(txtFolio);
+		}
+	}
+	
+	var tipo = "GET";
+	var url = "index.php?folios&metodo=getfolio&documento=1";
 	var asincrono = true;
 
 	ajax.open(tipo, url, asincrono);

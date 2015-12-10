@@ -8,10 +8,10 @@ class Venta_Controlador {
     public $template = 'venta';
     
     public function main(array $parametros) {
-		if(empty($parametros)) {
+		if ( isset($parametros) ) {
 			$vista =  new ventaVista_Modelo($this->template);
 			$vista->render();
-    	}
+		}
 	}	
 }
 ?>

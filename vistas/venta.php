@@ -49,6 +49,7 @@
 		<p>TENDEJÓN DON REGINO</p>
 		<p>Callejón del cuajo No. 700</p>
 		<p>Ciudad de México. C.P 8888</p>
+        <p id="folio"></p>
 	</div>
 	<div id="detalle">
 		<table id="tablaProductos">
