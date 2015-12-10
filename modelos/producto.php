@@ -24,9 +24,9 @@ class Producto_Modelo {
 		
         $this->db->prepare(
             "
-            SELECT descripcion, precio, codigobarra, unidad 
-            FROM producto 
-            WHERE codigobarra ='$codigoBarra';
+            select codigobarra, descripcion, precio, unidad
+            from producto 
+            where codigobarra ='$codigoBarra';
             "
         );
         
@@ -43,7 +43,7 @@ class Producto_Modelo {
 		$nombre = $this->db->escape($nombre);
 		$this->db->prepare(
 			"
-			select descripcion, unidad, precio 
+			select codigobarra, descripcion, precio, unidad 
 			from producto 
 			where descripcion like '%$nombre%'
 			"

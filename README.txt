@@ -12,4 +12,6 @@
 			Los tres funcionan bien.
 			Creo un directorio data para colocar una copia de la bd
 			por las tablas que voy creando o modificando.
+			Ya está funcionando el grabado de productos en la tabla 
+			detalle.
 

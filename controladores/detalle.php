@@ -18,6 +18,7 @@ class Detalle_Controlador {
 					if ( isset($parametros['folio']) &&
 						 isset($parametros['codigobarra']) &&
 						 isset($parametros['precio']) ) {
+							 			
 						$resultado = $notaModelo->agregarDetalle(
 										$parametros['folio'],
 										$parametros['codigobarra'],

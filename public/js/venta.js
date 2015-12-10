@@ -98,7 +98,8 @@ function productoUnSelected() {
 */
 function productoSeleccionado() {
 	// grabar en backend
-	grabarProducto(jsonProductos[this.id].codigobarra);
+	grabarProducto(jsonProductos[this.id].codigobarra,
+				   jsonProductos[this.id].precio);
 	
 	var codigo = document.getElementById('codigo');
 	var divProductosSugeridos = document.getElementById('divProductosSugeridos');
@@ -130,7 +131,7 @@ function productoSeleccionado() {
 /**
 *	Grabar el producto en la nota
 */
-function grabarProducto(codigobarra) {
+function grabarProducto(codigobarra, precio) {
 
 	var ajax = new XMLHttpRequest();		
 
@@ -145,8 +146,10 @@ function grabarProducto(codigobarra) {
 	}
 	
 	var tipo = "GET";
-	var url = "index.php?producto&metodo=grabar&codigobarra=" + codigobarra;
+	var url = "index.php?detalle&metodo=agregardetalle&folio=" + "100" + "&codigobarra=" + codigobarra +"&precio=" + precio;
+
 	var asincrono = true;
 
 	ajax.open(tipo, url, asincrono);
+	ajax.send();
 }

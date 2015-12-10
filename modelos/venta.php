@@ -16,24 +16,22 @@ class Venta_Modelo {
     }
     
     /**
-	*	Guardar ticket
+	*	Obtener folio para nota de venta
 	*/
-    public function getProductoByCodigo($codigoBarra) {
-		
-		$codigoBarra = $this->db->escape($codigoBarra);
+    public function getFolio() {
 		
         $this->db->prepare(
             "
-            SELECT descripcion, precio, codigobarra, unidad 
-            FROM producto 
-            WHERE codigobarra ='$codigoBarra';
+            SELECT folio
+            FROM folios 
+            WHERE id_folio = 1;
             "
         );
         
         $this->db->query();
-        $producto = $this->db->fetch('array');
+        $folio = $this->db->fetch('array');
         
-        return $producto;
+        return $folio;
     }
 
 	/**
