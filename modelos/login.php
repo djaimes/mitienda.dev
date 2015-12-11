@@ -26,7 +26,7 @@ class Login_Modelo {
             "
         );
         $this->db->query();
-        $usuario = $this->db->fetch('array');
+        $usuario = $this->db->fetch();
         
         return $usuario;
     }

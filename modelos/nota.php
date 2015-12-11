@@ -42,13 +42,50 @@ class Nota_Modelo {
 
         $this->db->prepare(
             "
-            UPDATE nota set importe = $subtotal where folio = $folio;
+            UPDATE nota set importe = $subtotal where folio = $folio
             "
         );
         
         $resultado = $this->db->query();
-
         return $resultado;
     }
+
+	/**
+	*	Generar PDF
+	*/
+	public function pdfNota($folio) {
+		$folio = $this->db->escape($folio);
+        $this->db->prepare(
+            "
+			select nota.folio, nota.fecha, nota.importe, 
+				   detalle.codigobarra, producto.descripcion, detalle.precio 
+			from detalle 
+			left join nota on nota.folio = detalle.folio 
+			left join producto on detalle.codigobarra  = producto.codigobarra 
+			where detalle.folio = $folio
+            "
+        ); 
+        $this->db->query();
+		$resultado = $this->db->fetch();
+        return $resultado;
+	}
+
+	/**
+	*	Recuperar una nota
+	*/
+	public function getNota($folio) {
+		$folio = $this->db->escape($folio);
+        $this->db->prepare(
+            "
+			select folio, fecha, importe
+			from nota
+			where folio = $folio
+            "
+        ); 
+        $this->db->query();
+		$resultado = $this->db->fetch();
+        return $resultado;
+	}
 }
+
 ?>

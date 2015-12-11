@@ -64,26 +64,16 @@ class Mysql_Driver extends Database_Library {
 	/**
 	*	Obtener una fila del resultado del recordset
 	*/
-	public function fetch($type = 'object') {
+	public function fetch() {
 		if ( isset($this->result) ){
-			switch ($type){
-				case 'array':
-					// $row = $this->result->fetch_array();
-		 			$arreglo = array();
-         			while ($row = $this->result->fetch_array(MYSQL_ASSOC)) {
-						$arreglo[]=$row;
-         			}
-					break;
-				case 'object':
-					// por hacer
-				default:
-					$row = $this->result->fetch_object();
-					break;
+			$arreglo = array();
+			while ($row = $this->result->fetch_array(MYSQL_ASSOC)) {
+				$arreglo[]=$row;
 			}
-			//return $row;
 			return $arreglo;
+		} else {
+			return FALSE;
 		}
-		return FALSE;
 	}
 }
 ?>

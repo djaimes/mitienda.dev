@@ -25,6 +25,18 @@ class Nota_Controlador {
 									$parametros['subtotal']
 								 );
 					break;	
+				case 'pdfnota':
+					$resultado = $notaModelo->pdfNota(
+								 	$parametros['folio']
+								 );
+					break;
+
+				case 'getnota':
+					$resultado = $notaModelo->getNota(
+								 	$parametros['folio']
+								 );
+					break;
+
 				default:
 					// por hacer
 					break;
