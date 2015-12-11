@@ -6,8 +6,7 @@
 
 class Nota_Controlador {
 
-    public $jsonTemplate = 'jsonnota';
-    public $htmlTemplate = 'htmlnota';
+	public $template;
     
     public function main(array $parametros) {
 		if ( isset($parametros['metodo']) ) {
@@ -29,6 +28,7 @@ class Nota_Controlador {
 					$resultado = $notaModelo->pdfNota(
 								 	$parametros['folio']
 								 );
+					$this->template = 'pdfnota';
 					break;
 
 				case 'getnota':
@@ -38,11 +38,11 @@ class Nota_Controlador {
 					break;
 
 				default:
-					// por hacer
+					$this->template = 'jsontemplate';
 					break;
 			}
 		}
-		$view = new notaVista_Modelo($this->jsonTemplate);
+		$view = new notaVista_Modelo($this->template);
 		$view->assign('resultado', $resultado);
 		$view->render();
     }
