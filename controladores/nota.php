@@ -17,33 +17,47 @@ class Nota_Controlador {
 					$resultado = $notaModelo->agregarNota(
 											$parametros['folio']
 								);
+					$this->template = 'jsonnota';
 					break;
+					
 				case 'actualizarnota':
 					$resultado = $notaModelo->actualizarNota(
 								 	$parametros['folio'],
 									$parametros['subtotal']
 								 );
-					break;	
+					$this->template = 'jsonnota';		 
+					break;
+						
 				case 'pdfnota':
-					$resultado = $notaModelo->pdfNota(
+					$datosnota = $notaModelo->pdfNota(
 								 	$parametros['folio']
 								 );
+					
+					$id_empresa = 1;
+					$empresaModelo = new Empresa_Modelo;
+					$datosempresa = $empresaModelo->getEmpresa(
+									$id_empresa
+									);
 					$this->template = 'pdfnota';
+					$view = new notaVista_Modelo($this->template);
+					$view->assign('datosnota', $datosnota);
+					$view->assign('datosempresa', $datosempresa);
+					
 					break;
 
 				case 'getnota':
 					$resultado = $notaModelo->getNota(
 								 	$parametros['folio']
 								 );
+					$this->template = 'jsonnota';	
+					$view = new notaVista_Modelo($this->template);
+					$view->assign('datosnota', $datosnota);
 					break;
 
 				default:
-					$this->template = 'jsontemplate';
 					break;
 			}
 		}
-		$view = new notaVista_Modelo($this->template);
-		$view->assign('resultado', $resultado);
 		$view->render();
     }
 }

@@ -1,1 +1,1 @@
-<?=json_encode($data['resultado']);?>
+<?=json_encode($data['datosnota']);?>

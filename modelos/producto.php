@@ -31,7 +31,7 @@ class Producto_Modelo {
         );
         
         $this->db->query();
-        $producto = $this->db->fetch('array');
+        $producto = $this->db->fetch();
         
         return $producto;
     }
