@@ -71,6 +71,23 @@ class Nota_Modelo {
 	}
 
 	/**
+	*	Guardar PDF en la nota
+	*/
+	public function pdfNotaGuardar($folio, $contenido){
+		$folio = $this->db->escape($folio);
+		$contenido = $this->db->escape($contenido);
+		$this->db->prepare(
+			"
+			INSERT INTO nota set cfd_pdf = '$contenido'  
+			WHERE folio = $folio
+			"
+		);
+        $resultado = $this->db->query();
+echo "* " . print_r($resultado); exit;
+        return $resultado;
+	}
+
+	/**
 	*	Recuperar una nota
 	*/
 	public function getNota($folio) {

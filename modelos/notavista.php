@@ -33,7 +33,6 @@ class notaVista_Modelo {
 		if ($direct_output !== TRUE){
 			return ob_get_clean();
 		}
-		
     }
 	
 	public function __destruct(){

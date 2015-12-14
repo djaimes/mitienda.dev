@@ -43,5 +43,8 @@ $pdf->Cell(45,5,'(Son: Chorrocientos mil 00/100)', 0,0);
 $pdf->Ln();
 $pdf->Cell(45,5,'Ticket No.: ' . $producto['folio'], 0,0);
 
-$pdf->Output();
+$pdfContenido = $pdf->Output("","S");
+
+// Es print, no return por que regresa el flujo de salida al modelo
+print $pdfContenido;
 ?>

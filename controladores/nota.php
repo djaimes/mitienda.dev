@@ -18,6 +18,7 @@ class Nota_Controlador {
 											$parametros['folio']
 								);
 					$this->template = 'jsonnota';
+					$view->render();
 					break;
 					
 				case 'actualizarnota':
@@ -26,6 +27,7 @@ class Nota_Controlador {
 									$parametros['subtotal']
 								 );
 					$this->template = 'jsonnota';		 
+					$view->render();
 					break;
 						
 				case 'pdfnota':
@@ -38,11 +40,22 @@ class Nota_Controlador {
 					$datosempresa = $empresaModelo->getEmpresa(
 									$id_empresa
 									);
+
 					$this->template = 'pdfnota';
 					$view = new notaVista_Modelo($this->template);
 					$view->assign('datosnota', $datosnota);
 					$view->assign('datosempresa', $datosempresa);
-					
+
+					// Con FALSE el pdf no es enviado al navegador
+					// se cacha en la variable $pdfContenido
+					$pdfContenido = $view->render(FALSE);
+
+					// Guardar en Base de Datos
+					$resultado = $notaModelo->pdfNotaGuardar(
+									$parametros['folio'],
+									$pdfContenido
+								);
+					print_r($resultado); exit;
 					break;
 
 				case 'getnota':
@@ -52,13 +65,13 @@ class Nota_Controlador {
 					$this->template = 'jsonnota';	
 					$view = new notaVista_Modelo($this->template);
 					$view->assign('datosnota', $datosnota);
+					$view->render();
 					break;
 
 				default:
 					break;
 			}
 		}
-		$view->render();
     }
 }
 ?>
