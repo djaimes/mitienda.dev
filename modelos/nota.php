@@ -78,12 +78,26 @@ class Nota_Modelo {
 		$contenido = $this->db->escape($contenido);
 		$this->db->prepare(
 			"
-			INSERT INTO nota set cfd_pdf = '$contenido'  
+			UPDATE nota set cfd_pdf = '$contenido'  
 			WHERE folio = $folio
 			"
 		);
         $resultado = $this->db->query();
-echo "* " . print_r($resultado); exit;
+        return $resultado;
+	}
+
+	/**
+	*	Recuperar PDF
+	*/
+	public function getPdfNota($folio){
+		$folio = $this->db->escape($folio);
+		$this->db->prepare(
+			"
+			SELECT from cfd_pdf FROM  
+			WHERE folio = $folio
+			"
+		);
+        $resultado = $this->db->query();
         return $resultado;
 	}
 

@@ -55,9 +55,19 @@ class Nota_Controlador {
 									$parametros['folio'],
 									$pdfContenido
 								);
-					print_r($resultado); exit;
 					break;
 
+				case 'getpdfnota':
+					$pdf = $notaModelo->getPdfNota(
+								 	$parametros['folio']
+								 );
+					
+					$this->template = 'getpdfnota';
+					$view = new notaVista_Modelo($this->template);
+					$view->assign('pdf', $pdf);
+					$view->render();
+
+					break;
 				case 'getnota':
 					$resultado = $notaModelo->getNota(
 								 	$parametros['folio']
