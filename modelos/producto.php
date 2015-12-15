@@ -16,6 +16,13 @@ class Producto_Modelo {
     }
     
     /**
+	*	ALTA de un producto
+	*/
+    public function altaProducto($parametros) {
+
+	}
+		
+    /**
 	*	Buscar producto por código de barra
 	*/
     public function getProductoByCodigo($codigoBarra) {

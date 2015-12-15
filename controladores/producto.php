@@ -7,6 +7,7 @@
 class Producto_Controlador {
 
     public $htmlTemplate = 'producto';
+    public $altaTemplate = 'altaproducto';
     public $jsonTemplate = 'jsonproducto';
     
     public function main(array $parametros) {
@@ -14,8 +15,19 @@ class Producto_Controlador {
        		$productoModelo = new Producto_Modelo;
 			$metodo = $parametros['metodo'];
 			switch ($metodo) {
-				case 'grabar':
-					// grabar un producto
+				case 'altaproducto':
+					if ( isset($parametro['descripcion']) ){
+						$resultado = $productoModelo->altaProducto(
+										$parametros);	
+						$view = new productoVista_Modelo(
+										$this->grabaTemplate);
+						$view->assign('resultado', $resultado);
+					} else {
+						$view = new productoVista_Modelo(
+										$this->altaTemplate);
+					}
+					$view->render();
+
 					break;
 				case 'borrar':
 					// borrar un producto
@@ -30,10 +42,10 @@ class Producto_Controlador {
 					}
 					$view = new productoVista_Modelo($this->jsonTemplate);
 					$view->assign('productos', $producto);
+					$view->render();
 					break;
 			}
 		}
-		$view->render();
     }
 }
 ?>
