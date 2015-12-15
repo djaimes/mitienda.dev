@@ -64,12 +64,14 @@ class Nota_Controlador {
 					
 					$this->template = 'getpdfnota';
 					$view = new notaVista_Modelo($this->template);
+					$view->assign('folio', $parametros['folio']);
 					$view->assign('pdf', $pdf);
 					$view->render();
 
 					break;
+
 				case 'getnota':
-					$resultado = $notaModelo->getNota(
+					$datosnota = $notaModelo->getNota(
 								 	$parametros['folio']
 								 );
 					$this->template = 'jsonnota';	

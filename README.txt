@@ -17,6 +17,11 @@
 10-12-2015	Ya graba la nota, el detalle de la misma y actuliza el total
 			al final de la venta. Inhibe el botón de cerrar al finalizar.
 			Debo iniciar con el botón de generar el pdf de la nota, guardarlo
-			y terminar la venta. Después al mantenimiento del catálogo de productos
+			y terminar la venta. 
+			Después al mantenimiento del catálogo de productos
 			y finalizar la aplicación.
+15-12-2015	Ya funciona la generación del pdf de la nota y guardado en mysql.
+			Funciona la recuperación del pdf de la nota y el despliegue en 
+			el navegador.
+			Inicio el mantenimiento del catálog del producto.
  

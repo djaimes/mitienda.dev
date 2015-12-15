@@ -93,11 +93,13 @@ class Nota_Modelo {
 		$folio = $this->db->escape($folio);
 		$this->db->prepare(
 			"
-			SELECT from cfd_pdf FROM  
+			SELECT cfd_pdf 
+			FROM nota
 			WHERE folio = $folio
 			"
 		);
-        $resultado = $this->db->query();
+        $this->db->query();
+		$resultado = $this->db->fetch();
         return $resultado;
 	}
 
