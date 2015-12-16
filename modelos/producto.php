@@ -18,8 +18,40 @@ class Producto_Modelo {
     /**
 	*	ALTA de un producto
 	*/
-    public function altaProducto($parametros) {
+    public function altaProducto($param) 
+	{
+		$descripcion = $this->db->escape($param['descripcion']);
+		$unidad = $this->db->escape($param['unidad']);
+		$codigoBarra = $this->db->escape($param['codigobarra']);
+		$precio = $this->db->escape($param['precio']);
 
+        $this->db->prepare(
+			"
+			INSERT INTO producto(descripcion, unidad, codigobarra, precio)
+			VALUES('$descripcion','$unidad','$codigoBarra',$precio)
+			"
+		);
+
+        $resultado = $this->db->query();
+        return $resultado;
+	}
+		
+    /**
+	*	BAJA de un producto
+	*/
+    public function bajaProducto($codigoBarra) 
+	{
+		$codigoBarra = $this->db->escape($codigoBarra);
+
+        $this->db->prepare(
+			"
+			DELETE FROM producto
+			WHERE codigobarra =  $codigoBarra
+			"
+		);
+
+        $resultado = $this->db->query();
+        return $resultado;
 	}
 		
     /**
@@ -56,7 +88,7 @@ class Producto_Modelo {
 			"
 		);
 		$this->db->query();
-        $producto = $this->db->fetch('array');
+        $producto = $this->db->fetch();
         return $producto;
 	}
 }

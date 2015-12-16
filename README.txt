@@ -24,4 +24,5 @@
 			Funciona la recuperación del pdf de la nota y el despliegue en 
 			el navegador.
 			Inicio el mantenimiento del catálog del producto.
- 
+16-12-2015	Ya funciona el ABC de productos
+			Procede a iniciar con el reporte de ventas diarias. 

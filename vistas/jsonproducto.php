@@ -1,1 +1,1 @@
-<?=json_encode($data['productos']);?>
+<?=json_encode($data['producto']);?>

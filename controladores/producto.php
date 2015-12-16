@@ -1,51 +1,77 @@
 <?php
 
 /**
-*	CONTROLADOR para el objeto producto
+*	CONTROLADOR 
+*	Controla el objeto producto
 */
 
-class Producto_Controlador {
-
-    public $htmlTemplate = 'producto';
-    public $altaTemplate = 'altaproducto';
-    public $jsonTemplate = 'jsonproducto';
+class Producto_Controlador
+{
+	public $template = array(
+							'error' => 'errorproducto',
+							'html' => 'htmlproducto',
+							'json' => 'jsonproducto',
+							'res' => 'jsonresultado',
+							'txt' => 'txtproducto'
+						);
     
-    public function main(array $parametros) {
-		if ( isset($parametros['metodo']) ) {
-       		$productoModelo = new Producto_Modelo;
-			$metodo = $parametros['metodo'];
-			switch ($metodo) {
-				case 'altaproducto':
-					if ( isset($parametro['descripcion']) ){
-						$resultado = $productoModelo->altaProducto(
-										$parametros);	
-						$view = new productoVista_Modelo(
-										$this->grabaTemplate);
-						$view->assign('resultado', $resultado);
-					} else {
-						$view = new productoVista_Modelo(
-										$this->altaTemplate);
-					}
-					$view->render();
+	public function main(array $param)
+	{
+		if (!isset($param['metodo'])) {
+			$vista = new productoVista_Modelo($this->template['error']);
+			$vista->render();
+			return FALSE;
+		} 
 
-					break;
-				case 'borrar':
-					// borrar un producto
-					break;
-				case 'buscar':
-					if ( isset($parametros['cadena'] ) ) {
-						$producto = $productoModelo->getProductoByNombre(
-										$parametros['cadena']);	
-					} else {
-        				$producto = $productoModelo->getProductoByCodigo(
-										$parametros['codigobarra']);
-					}
-					$view = new productoVista_Modelo($this->jsonTemplate);
-					$view->assign('productos', $producto);
-					$view->render();
-					break;
-			}
+		$modelo = new Producto_Modelo;
+
+		switch ($param['metodo']) {
+			case 'alta':
+				if (isset($param['descripcion']) &&
+					isset($param['unidad']) &&
+					isset($param['codigobarra']) &&
+					isset($param['precio'])
+					) {
+					$resultado = $modelo->altaProducto($param);	
+					$vista = new productoVista_Modelo($this->template['res']);
+					$vista->asignar('resultado', $resultado);
+				} else {
+					$vista = new productoVista_Modelo($this->template['error']);
+				}
+				$vista->render();
+				break;
+			case 'baja':
+				// to do
+				if (isset($param['codigobarra'])) {
+					$resultado = $modelo->bajaProducto($param['codigobarra']);	
+					$vista = new productoVista_Modelo($this->template['res']);
+					$vista->asignar('resultado', $resultado);
+				} else {
+					$vista = new productoVista_Modelo($this->template['error']);
+				}
+				$vista->render();
+				break;
+			case 'buscar':
+				if (isset($param['cadena'])) {
+					$producto = $modelo->getProductoByNombre(
+									$param['cadena']
+								);
+				} elseif (isset($param['codigobarra'])) {
+        			$producto = $modelo->getProductoByCodigo(
+									$param['codigobarra']
+								);
+				} else {
+					$vista = new productoVista_Modelo($this->template['error']);
+					$vista->render();
+					return FALSE;
+				}
+				$vista = new productoVista_Modelo($this->template['json']);
+				$vista->asignar('producto', $producto);
+				$vista->render();
+				break;
+			default:
+				// to do
 		}
-    }
-}
+	}
+} 
 ?>

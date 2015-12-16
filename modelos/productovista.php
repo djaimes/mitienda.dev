@@ -23,7 +23,7 @@ class productoVista_Modelo {
     }
 
     // Recibe valores del controlador y los almacena localmente
-    public function assign($variable , $value){
+    public function asignar($variable , $value){
 		$this->data[$variable] = $value;
 	}
     
