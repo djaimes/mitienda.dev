@@ -18,12 +18,12 @@ class Empresa_Controlador {
 					$empresa = $empresaModelo->getEmpresa(
 										$parametros['id_empresa']);	
 
-					$view = new empresaVista_Modelo($this->jsonTemplate);
-					$view->assign('empresa', $empresa);
+					$vista = new empresaVista_Modelo($this->jsonTemplate);
+					$vista->asignar('empresa', $empresa);
 					break;
 			}
 		}
-		$view->render();
+		$vista->render();
     }
 }
 ?>

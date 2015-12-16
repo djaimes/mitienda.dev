@@ -4,35 +4,44 @@
 *	CONTROLADOR para el objeto nota
 */
 
-class Nota_Controlador {
+class Nota_Controlador
+{
+	public $template = array(
+							'error' => 'errornota',
+							'html' => 'htmlnota',
+							'json' => 'jsonnota',
+							'pdf' => 'pdfnota',
+							'getpdf' => 'getpdfnota',
+							'res' => 'jsonresultado',
+							'txt' => 'txtnota'
+						);
 
-	public $template;
-    
-    public function main(array $parametros) {
-		if ( isset($parametros['metodo']) ) {
-       		$notaModelo = new Nota_Modelo;
-			$metodo = $parametros['metodo'];
+    public function main(array $param) 
+	{
+		if (isset($param['metodo'])) {
+       		$modelo = new Nota_Modelo;
+			$metodo = $param['metodo'];
 			switch ($metodo) {
 				case 'agregarnota':
-					$resultado = $notaModelo->agregarNota(
-											$parametros['folio']
+					$resultado = $modelo->agregarNota(
+											$param['folio']
 								);
-					$this->template = 'jsonnota';
-					$view->render();
+					$this->template['json'];
+					$vista->render();
 					break;
 					
 				case 'actualizarnota':
-					$resultado = $notaModelo->actualizarNota(
-								 	$parametros['folio'],
-									$parametros['subtotal']
+					$resultado = $modelo->actualizarNota(
+								 	$param['folio'],
+									$param['subtotal']
 								 );
-					$this->template = 'jsonnota';		 
-					$view->render();
+					$this->template['json'];
+					$vista->render();
 					break;
 						
 				case 'pdfnota':
-					$datosnota = $notaModelo->pdfNota(
-								 	$parametros['folio']
+					$datosnota = $modelo->pdfNota(
+								 	$param['folio']
 								 );
 					
 					$id_empresa = 1;
@@ -41,45 +50,52 @@ class Nota_Controlador {
 									$id_empresa
 									);
 
-					$this->template = 'pdfnota';
-					$view = new notaVista_Modelo($this->template);
-					$view->assign('datosnota', $datosnota);
-					$view->assign('datosempresa', $datosempresa);
+					$vista = new notaVista_Modelo($this->template['pdf']);
+					$vista->asignar('datosnota', $datosnota);
+					$vista->asignar('datosempresa', $datosempresa);
 
 					// Con FALSE el pdf no es enviado al navegador
 					// se cacha en la variable $pdfContenido
-					$pdfContenido = $view->render(FALSE);
+					$pdfContenido = $vista->render(FALSE);
 
 					// Guardar en Base de Datos
-					$resultado = $notaModelo->pdfNotaGuardar(
-									$parametros['folio'],
+					$resultado = $modelo->pdfNotaGuardar(
+									$param['folio'],
 									$pdfContenido
 								);
 					break;
 
 				case 'getpdfnota':
-					$pdf = $notaModelo->getPdfNota(
-								 	$parametros['folio']
+					$pdf = $modelo->getPdfNota(
+								 	$param['folio']
 								 );
 					
-					$this->template = 'getpdfnota';
-					$view = new notaVista_Modelo($this->template);
-					$view->assign('folio', $parametros['folio']);
-					$view->assign('pdf', $pdf);
-					$view->render();
+					$vista = new notaVista_Modelo($this->template['getpdf']);
+					$vista->asignar('folio', $param['folio']);
+					$vista->asignar('pdf', $pdf);
+					$vista->render();
 
 					break;
 
 				case 'getnota':
-					$datosnota = $notaModelo->getNota(
-								 	$parametros['folio']
-								 );
-					$this->template = 'jsonnota';	
-					$view = new notaVista_Modelo($this->template);
-					$view->assign('datosnota', $datosnota);
-					$view->render();
+					$datosnota = $modelo->getNota($param['folio']);
+					$vista = new notaVista_Modelo($this->template['json']);
+					$vista->asignar('datosnota', $datosnota);
+					$vista->render();
 					break;
 
+				case 'corte':
+					if (isset($param['fecha'])) {
+						$fecha = $param['fecha'];
+					} else {
+						$fecha = date("Y-m-d");
+					}
+
+					$datosnota = $modelo->corte($fecha);
+					$vista = new notaVista_Modelo($this->template['json']);
+					$vista->asignar('datosnota', $datosnota);
+					$vista->render();
+	
 				default:
 					break;
 			}

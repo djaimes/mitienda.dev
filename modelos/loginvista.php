@@ -16,7 +16,7 @@ class LoginVista_Modelo {
         }
     }
 
-    public function assign($variable , $value) {
+    public function asignar($variable , $value) {
 		$this->data[$variable] = $value;
 	}
     

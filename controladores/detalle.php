@@ -28,15 +28,15 @@ class Detalle_Controlador {
 						$resultado = ($resultado) ? 1 : 0;
 					} 
 
-					$view = new detalleVista_Modelo($this->txtTemplate);
-					$view->assign('resultado', $resultado);
+					$vista = new detalleVista_Modelo($this->txtTemplate);
+					$vista->asignar('resultado', $resultado);
 					break;
 				default:
 					// por hacer
 					break;
 			}
 		}
-		$view->render();
+		$vista->render();
     }
 }
 ?>

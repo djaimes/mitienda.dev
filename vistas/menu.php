@@ -19,7 +19,7 @@
 				<a href="#">Producto</a>
 			</li>
 			<li>
-				<a href="#">Reportes</a>
+				<a href="index.php?corte">Corte de caja</a>
 			</li>
 			<li>
 				<a href="#">Salir</a>

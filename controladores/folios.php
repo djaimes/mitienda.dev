@@ -20,15 +20,15 @@ class Folios_Controlador {
 										$parametros['documento']);	
 					} 
 
-					$view = new foliosVista_Modelo($this->jsonTemplate);
-					$view->assign('folio', $folio);
+					$vista = new foliosVista_Modelo($this->jsonTemplate);
+					$vista->asignar('folio', $folio);
 					break;
 				default:
 					// por hacer
 					break;
 			}
 		}
-		$view->render();
+		$vista->render();
     }
 }
 ?>

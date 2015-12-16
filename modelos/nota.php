@@ -119,6 +119,20 @@ class Nota_Modelo {
 		$resultado = $this->db->fetch();
         return $resultado;
 	}
-}
 
+	/**
+	*	CORTE - Recuperar todas las notas de un día
+	*/
+	public function corte($fecha) {
+		$fecha = $this->db->escape($fecha);
+		$sql = "select folio, fecha, importe 
+				from nota 
+				where date(fecha) = '$fecha'";
+
+        $this->db->prepare($sql); 
+        $this->db->query();
+		$notas = $this->db->fetch();
+        return $notas;
+	}
+}
 ?>

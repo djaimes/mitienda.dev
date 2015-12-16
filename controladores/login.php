@@ -10,14 +10,14 @@ class Login_Controlador {
     public function main(array $parametros) {
 		if(empty($parametros)) {
 			$vista =  new LoginVista_Modelo($this->template);
-			$vista->assign('clase', 'errorNoVisible');
-			$vista->assign('error', '');
+			$vista->asignar('clase', 'errorNoVisible');
+			$vista->asignar('error', '');
 			$vista->render();
     	} else {
 			if ( isset($parametros['error'])) {
 				$vista =  new LoginVista_Modelo($this->template);
-				$vista->assign('clase', 'errorVisible');
-				$vista->assign('error', 'Acceso denegado, intente de nuevo.');
+				$vista->asignar('clase', 'errorVisible');
+				$vista->asignar('error', 'Acceso denegado, intente de nuevo.');
 				$vista->render();
 			} else {
 				$usuario = $parametros['login'];

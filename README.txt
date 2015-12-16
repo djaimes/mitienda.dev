@@ -26,3 +26,7 @@
 			Inicio el mantenimiento del catálog del producto.
 16-12-2015	Ya funciona el ABC de productos
 			Procede a iniciar con el reporte de ventas diarias. 
+			Ya tengo el método en el modelo nota que me permite sacar
+			todas las notas de un día para elaborar el reporte html
+			del corte de caja del día o de un día especificado.
+
