@@ -26,7 +26,9 @@ class Nota_Controlador
 					$resultado = $modelo->agregarNota(
 											$param['folio']
 								);
-					$this->template['json'];
+					$this->template['res'];
+					$vista = new notaVista_Modelo($this->template['res']);
+					$vista->asignar('resultado', $resultado);
 					$vista->render();
 					break;
 					
@@ -35,21 +37,23 @@ class Nota_Controlador
 								 	$param['folio'],
 									$param['subtotal']
 								 );
-					$this->template['json'];
+					$this->template['res'];
+					$vista = new notaVista_Modelo($this->template['res']);
+					$vista->asignar('resultado', $resultado);
 					$vista->render();
 					break;
 						
-				case 'pdfnota':
-					$datosnota = $modelo->pdfNota(
-								 	$param['folio']
-								 );
-					
+				case 'pdfnota':					
 					$id_empresa = 1;
 					$empresaModelo = new Empresa_Modelo;
 					$datosempresa = $empresaModelo->getEmpresa(
 									$id_empresa
 									);
 
+					$datosnota = $modelo->pdfNota(
+									$param['folio']
+								);
+								
 					$vista = new notaVista_Modelo($this->template['pdf']);
 					$vista->asignar('datosnota', $datosnota);
 					$vista->asignar('datosempresa', $datosempresa);
@@ -63,6 +67,11 @@ class Nota_Controlador
 									$param['folio'],
 									$pdfContenido
 								);
+					
+					$this->template['res'];
+					$vista = new notaVista_Modelo($this->template['res']);
+					$vista->asignar('resultado', $resultado);
+					$vista->render();	
 					break;
 
 				case 'getpdfnota':

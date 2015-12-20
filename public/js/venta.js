@@ -88,6 +88,11 @@ function init(){
 
 		var cerrarNota = document.getElementById('cerrarnota');
 		cerrarNota.setAttribute('disabled','disabled');
+		
+		// Habilitar la impresión
+		var imprimirNota = document.getElementById('imprimirnota');
+		imprimirNota.removeAttribute("disabled");
+		imprimirNota.onclick = getPdfNota;
 	};
 	
 	getFolio();
@@ -235,6 +240,7 @@ function getFolio() {
 
 	ajax.onreadystatechange = function() {	
 		if (ajax.readyState == 4 && ajax.status == 200) { 
+			// alert(ajax.responseText);
 			var jsonFolio = JSON.parse(ajax.responseText); 
 			var folio = jsonFolio[0].folio;
 			var tagfolio = document.getElementById("folio");
@@ -261,7 +267,7 @@ function agregarNota() {
 
 	ajax.onreadystatechange = function() {	
 		if (ajax.readyState == 4 && ajax.status == 200) { 
-			// nada por hacer
+			// alert(ajax.responseText);
 		}
 	}
 	
@@ -282,7 +288,8 @@ function actualizarNota() {
 
 	ajax.onreadystatechange = function() {	
 		if (ajax.readyState == 4 && ajax.status == 200) { 
-			// Alguna validación
+			// alert(ajax.responseText);
+			pdfNota();
 		}
 	}
 	
@@ -292,3 +299,44 @@ function actualizarNota() {
 	ajax.open(tipo, url, asincrono);
 	ajax.send();
 }
+
+/**
+*	Generar el pdf de una nota
+*/
+function pdfNota() {
+
+	var ajax = new XMLHttpRequest();		
+
+	ajax.onreadystatechange = function() {	
+		if (ajax.readyState == 4 && ajax.status == 200) { 
+			// alert(ajax.responseText);
+		}
+	}
+	
+	var tipo = "GET";
+	var url = "index.php?nota&metodo=pdfnota&folio=" + folioNota;
+	var asincrono = true; // hay que esperar la respuesta
+	ajax.open(tipo, url, asincrono);
+	ajax.send();
+}
+
+/**
+*	Recuperar el PDF de una nota
+*/
+function getPdfNota() {
+
+	var ajax = new XMLHttpRequest();		
+
+	ajax.onreadystatechange = function() {	
+		if (ajax.readyState == 4 && ajax.status == 200) { 
+			// alert(ajax.responseText);
+		}
+	}
+	
+	var tipo = "GET";
+	var url = "index.php?nota&metodo=getpdfnota&folio=" + folioNota;
+	var asincrono = true; // hay que esperar la respuesta
+	ajax.open(tipo, url, asincrono);
+	ajax.send();
+}
+

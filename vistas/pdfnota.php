@@ -38,7 +38,11 @@ $pdf->Cell(45,5,'TOTAL: ', 0,0);
 $pdf->Cell(15,5,number_format($producto['importe'] * (1+IVA),2,'.',''), 0, 1, 'R');
 
 $pdf->Ln();
-$pdf->Cell(45,5,'(Son: Chorrocientos mil 00/100)', 0,0);
+
+// Cantidad con letras
+$numeroEnLetras = new EnLetras_Library;
+
+$pdf->Cell(45,5,$numeroEnLetras->ValorEnLetras($producto['importe'] * (1 + IVA),"pesos"),0,0); 
 
 $pdf->Ln();
 $pdf->Cell(45,5,'Ticket No.: ' . $producto['folio'], 0,0);

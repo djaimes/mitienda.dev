@@ -37,6 +37,9 @@
 <div id="cerrarNota">
 	<input id="cerrarnota" type="button" value="Cerrar la nota">
 </div>
+<div id="imprimirNota">
+	<input id="imprimirnota" type="button" value="Imprimir" disabled>
+</div>
 </section>
 <section id="nota">
 	<div id="headerNota">
