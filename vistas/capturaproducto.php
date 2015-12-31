@@ -7,6 +7,7 @@
     <body>
 	    <form id="altaproducto" method="get" action="index.php">
 			<input type="hidden" name='producto'>
+			<input type="hidden" name='metodo' value='alta'>
             <label>Descricpión</label>
             <input name="descripcion" placeholder="Descripción" autofocus>
             <label>Unidad</label>

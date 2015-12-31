@@ -8,6 +8,7 @@
 class Producto_Controlador
 {
 	public $template = array(
+							'captura' => 'capturaproducto',
 							'error' => 'errorproducto',
 							'html' => 'htmlproducto',
 							'json' => 'jsonproducto',
@@ -41,7 +42,6 @@ class Producto_Controlador
 				$vista->render();
 				break;
 			case 'baja':
-				// to do
 				if (isset($param['codigobarra'])) {
 					$resultado = $modelo->bajaProducto($param['codigobarra']);	
 					$vista = new productoVista_Modelo($this->template['res']);
@@ -67,6 +67,11 @@ class Producto_Controlador
 				}
 				$vista = new productoVista_Modelo($this->template['json']);
 				$vista->asignar('producto', $producto);
+				$vista->render();
+				break;
+			case 'captura':
+				// Enviar vista para captura de producto
+				$vista = new productoVista_Modelo($this->template['captura']);
 				$vista->render();
 				break;
 			default:

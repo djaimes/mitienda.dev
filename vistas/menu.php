@@ -16,13 +16,13 @@
 				<a href="index.php?venta">Vender</a>
 			</li>
 			<li>
-				<a href="#">Producto</a>
+				<a href="index.php?producto&metodo=captura">Producto</a>
 			</li>
 			<li>
 				<a href="index.php?corte">Corte de caja</a>
 			</li>
 			<li>
-				<a href="#">Salir</a>
+				<a href="index.php?salir">Salir</a>
 			</li>
 		</ul>
 	</nav>
