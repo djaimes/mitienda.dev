@@ -1,6 +1,6 @@
 <?php
 /**
-*	login.php
+*	CONTROLADOR login
 */
 
 class Login_Controlador {
@@ -14,7 +14,7 @@ class Login_Controlador {
 			$vista->asignar('error', '');
 			$vista->render();
     	} else {
-			if ( isset($parametros['error'])) {
+			if ( isset($parametros['error']) ) {
 				$vista =  new LoginVista_Modelo($this->template);
 				$vista->asignar('clase', 'errorVisible');
 				$vista->asignar('error', 'Acceso denegado, intente de nuevo.');
@@ -22,10 +22,12 @@ class Login_Controlador {
 			} else {
 				$usuario = $parametros['login'];
 				$contrasena = $parametros['contrasena'];
-
 				$loginModelo = new Login_Modelo;
+				echo '<p>foox</p>';			
 				$login = $loginModelo->getUsuario($usuario, $contrasena);
-				if ( count($login) ){ 
+				echo '<p>*** '. $login . ' ***</p>'; exit; // HERE!
+								
+				if ( count($login) ){
 					$_SESSION['login'] = $login['login'];
 					$_SESSION['nombre'] = $login['nombre'] . ' ' . $login['paterno'];
 					// Llamar al controlador menú

@@ -6,6 +6,7 @@
 class Mysql_Driver extends Database_Library {
 
 	private $connection;
+	private $connected;
 	private $query;
 	private $result;
 	
@@ -21,8 +22,14 @@ class Mysql_Driver extends Database_Library {
 		$database = 'mitienda';
 
 		// Crear conexión
-		$this->connection = new mysqli($host, $user, $password, $database);
-		return TRUE;
+			$this->connection = new mysqli(
+			  							$host, $user, $password, $database); 
+			if ($this->connection->connect_error)
+			{
+				echo 'foobar';
+				throw new Exception(mysql_error());
+			}
+			return $this->connection;
 	}
 
 	/**

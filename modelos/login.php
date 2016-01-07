@@ -1,7 +1,7 @@
 <?php
 
 /**
-*	Login_Modelo 
+*	MODELO Login 
 */
 class Login_Modelo {
     
@@ -12,8 +12,14 @@ class Login_Modelo {
     }
     
     public function getUsuario($usuario, $contrasena) {
-		
-        $this->db->connect();
+		try { 
+		echo 'Connectando to database'; 
+		  $this->db->connect();
+		  echo 'Connected to database'; 
+		} catch (Exception $e) { 
+		  echo $e->errorMessage(); 
+		  exit;
+		} 
 		
 		$usuario = $this->db->escape($usuario);
 		$contrasena = $this->db->escape($contrasena);
