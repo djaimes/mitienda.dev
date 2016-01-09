@@ -12,15 +12,7 @@ class Login_Modelo {
     }
     
     public function getUsuario($usuario, $contrasena) {
-		try { 
-		echo 'Connectando to database'; 
-		  $this->db->connect();
-		  echo 'Connected to database'; 
-		} catch (Exception $e) { 
-		  echo $e->errorMessage(); 
-		  exit;
-		} 
-		
+		$this->db->connect();
 		$usuario = $this->db->escape($usuario);
 		$contrasena = $this->db->escape($contrasena);
 		

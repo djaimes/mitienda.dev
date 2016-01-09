@@ -23,9 +23,7 @@ class Login_Controlador {
 				$usuario = $parametros['login'];
 				$contrasena = $parametros['contrasena'];
 				$loginModelo = new Login_Modelo;
-				echo '<p>foox</p>';			
 				$login = $loginModelo->getUsuario($usuario, $contrasena);
-				echo '<p>*** '. $login . ' ***</p>'; exit; // HERE!
 								
 				if ( count($login) ){
 					$_SESSION['login'] = $login['login'];

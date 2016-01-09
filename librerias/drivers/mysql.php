@@ -22,14 +22,19 @@ class Mysql_Driver extends Database_Library {
 		$database = 'mitienda';
 
 		// Crear conexión
-			$this->connection = new mysqli(
-			  							$host, $user, $password, $database); 
-			if ($this->connection->connect_error)
-			{
-				echo 'foobar';
-				throw new Exception(mysql_error());
-			}
-			return $this->connection;
+		
+		// Indicamos a Mysql que lance excepciones
+		
+		mysqli_report(MYSQLI_REPORT_STRICT);
+		
+		try {
+			$this->connection = new mysqli($host, $user, $password, $database); 
+	
+		} catch (Exception $e){
+			echo '<h1>La base de datos no est&aacute; accesible</h1>'; 
+			exit;
+		}
+		return TRUE;
 	}
 
 	/**
