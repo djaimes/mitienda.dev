@@ -16,11 +16,11 @@
 			detalle.
 10-12-2015	Ya graba la nota, el detalle de la misma y actuliza el total
 			al final de la venta. Inhibe el botón de cerrar al finalizar.
-			Debo iniciar con el botón de generar el pdf de la nota, guardarlo
+			Debo iniciar con el botón de generar el pdf de la nota, guardar
 			y terminar la venta. 
 			Después al mantenimiento del catálogo de productos
 			y finalizar la aplicación.
-15-12-2015	Ya funciona la generación del pdf de la nota y guardado en mysql.
+15-12-2015	Ya funciona la generación del pdf de la nota y guardar en mysql
 			Funciona la recuperación del pdf de la nota y el despliegue en 
 			el navegador.
 			Inicio el mantenimiento del catálog del producto.
@@ -30,3 +30,5 @@
 			todas las notas de un día para elaborar el reporte html
 			del corte de caja del día o de un día especificado.
 10-01-2016	Funcionando hasta el corte de caja
+			Todo funcionando
+			Solo falta el control de menús de regresar.

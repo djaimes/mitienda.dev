@@ -1,14 +1,18 @@
-<!-- VISTA TEMPLATE  para el controlador producto-->
+<!DOCTYPE html>
 <html lang="es">
 <head>
+	<link rel="stylesheet" 
+		type="text/css" href="../public/css/captura.css">
 	<meta charset="UTF-8">
-	<title>Alta de producto</title>
+	<title>Producto</title>
 </head>
-    <body>
+<body>
 	    <form id="altaproducto" method="get" action="index.php">
 			<input type="hidden" name='producto'>
 			<input type="hidden" name='metodo' value='alta'>
-            <label>Descricpión</label>
+			<h1>Captura de productos</h1>
+			<hr>
+            <label>Descripción</label>
             <input name="descripcion" placeholder="Descripción" autofocus>
             <label>Unidad</label>
             <input name="unidad" placeholder="Unidad" autofocus>
@@ -16,7 +20,7 @@
             <input name="codigobarra" placeholder="Código de barra" autofocus>
             <label>Precio</label>
             <input name="precio" placeholder="Precio" autofocus>
-            <input id="submit" name="submit" type="submit" value="Grabar">
+            <input id="grabar" name="submit" type="submit" value="Guardar producto">
         </form>
-    </body>
+</body>
 </html>
