@@ -19,7 +19,7 @@
 				<a href="index.php?producto&metodo=captura">Producto</a>
 			</li>
 			<li>
-				<a href="index.php?corte">Corte de caja</a>
+				<a href="index.php?nota&metodo=corte">Corte de caja</a>
 			</li>
 			<li>
 				<a href="index.php?salir">Salir</a>

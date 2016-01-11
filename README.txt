@@ -29,4 +29,4 @@
 			Ya tengo el método en el modelo nota que me permite sacar
 			todas las notas de un día para elaborar el reporte html
 			del corte de caja del día o de un día especificado.
-
+10-01-2016	Funcionando hasta el corte de caja

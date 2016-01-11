@@ -127,7 +127,8 @@ class Nota_Modelo {
 		$fecha = $this->db->escape($fecha);
 		$sql = "select folio, fecha, importe 
 				from nota 
-				where date(fecha) = '$fecha'";
+				where date(fecha) = '$fecha' and
+					importe is not null";
 
         $this->db->prepare($sql); 
         $this->db->query();

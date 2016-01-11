@@ -9,6 +9,7 @@ class Nota_Controlador
 	public $template = array(
 							'error' => 'errornota',
 							'html' => 'htmlnota',
+							'htmlcorte' => 'htmlcorte',
 							'json' => 'jsonnota',
 							'pdf' => 'pdfnota',
 							'getpdf' => 'getpdfnota',
@@ -95,16 +96,19 @@ class Nota_Controlador
 
 				case 'corte':
 					if (isset($param['fecha'])) {
+						// La fecha se espera en dd/mm/aaaa
 						$fecha = $param['fecha'];
+						$fecha = explode('/', $fecha);
+						$fecha = implode('/',array_reverse($fecha));
 					} else {
 						$fecha = date("Y-m-d");
 					}
-
-					$datosnota = $modelo->corte($fecha);
-					$vista = new notaVista_Modelo($this->template['json']);
-					$vista->asignar('datosnota', $datosnota);
+					$notas = $modelo->corte($fecha);
+					$vista = new notaVista_Modelo($this->template['htmlcorte']);
+					$vista->asignar('notas', $notas);
 					$vista->render();
-	
+					break;
+					
 				default:
 					break;
 			}
