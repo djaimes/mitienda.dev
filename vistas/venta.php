@@ -10,22 +10,6 @@
 <header id="banner" class="body">
 	<img src="../public/images/bags64px.png" />
 	<h1>Tendejón "Don Regino"</h1>
-	<nav>
-		<ul>
-			<li>
-				<a href="#">Vender</a>
-			</li>
-			<li>
-				<a href="#">Producto</a>
-			</li>
-			<li>
-				<a href="#">Reportes</a>
-			</li>
-			<li>
-				<a href="#">Salir</a>
-			</li>
-		</ul>
-	</nav>
 </header>
 <section id="contenido" class="body">
 <section id="articulo" class="body">
@@ -35,11 +19,15 @@
 	</div>
 </div>
 <div id="cerrarNota">
-	<input id="cerrarnota" type="button" value="Cerrar la nota">
+	<input id="cerrarnota" type="button" value="Terminar venta">
 </div>
 <div id="imprimirNota">
 	<input id="imprimirnota" type="button" value="Imprimir" disabled>
 </div>
+<div id="salirVenta">
+	<input id="salirventa" type="button" value="Salir" onclick="location.href='http://mitienda.dev/index.php?menu';">
+</div>
+
 </section>
 <section id="nota">
 	<div id="headerNota">
@@ -63,8 +51,5 @@
 	</div>
 </section>
 </section>
-<footer id="pieDeNota" class="body">
-	<p>Mi tienda versión 1.0</P>
-</footer>
 </body>
 </html>
